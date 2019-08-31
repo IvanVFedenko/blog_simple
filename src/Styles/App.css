@@ -11,6 +11,12 @@ body {
   font-weight: 300;
 }
 
+.home {
+  text-align: center;
+  margin-top: 45%;
+  font-size: 30px;
+}
+
 .load-button {
   display:block;
   margin: 300px auto;

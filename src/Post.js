@@ -63,7 +63,7 @@ class Post extends React.Component {
   render() {
     const { postId, posts, comments } = this.props;
     const shownPost = posts.find(post => post.id === +postId)
-    const { page, perPage } = this.state;
+    const { body, page, perPage } = this.state;
     const firstPosition = page * perPage;
     const lastPosition = page * perPage + perPage;
   
@@ -97,14 +97,19 @@ class Post extends React.Component {
             type='body' 
             name='body'
             multiline={true}
-            rows={2}
+            rows={1}
             maxLength="2" 
             onChange={this.handleChange} 
             placeholder=" Add new comment"
             value={this.state.body}
             className="comment_input"
           />
-          <Button type='submit'>Add comment</Button> 
+          <Button 
+            type='submit'
+            disabled={!body.length}
+          >
+            Add comment
+          </Button> 
         </form> 
         {comments.length < 6 ? '' :
           <Pagination

@@ -20,6 +20,7 @@ class NewPost extends React.Component {
     title: '',
     body: '',
     creator: '',
+    errorsList: false,
   }
     
   componentDidMount() {
@@ -33,19 +34,21 @@ class NewPost extends React.Component {
   }
     
   handleSubmit = () => {
+    
+    const { title, body, creator } = this.state;
     const url ='https://simple-blog-api.crew.red/posts'
     const d = new Date();
     const curr_date = d.getDate();
     const curr_month = d.getMonth() + 1;
     const curr_year = d.getFullYear();
     
-    const data = { 
-      title: this.state.title,
-      body: this.state.body,
-      creator: this.state.creator,
+    const data = {     
+      title,
+      body,
+      creator,
       date: (curr_year + "-" + curr_month + "-" + curr_date),
     }
-    
+
     fetch(url, { method: 'POST', // or ‘PUT’
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers:{ 'Content-Type': 'application/json' }})
@@ -61,68 +64,72 @@ class NewPost extends React.Component {
     })
   }
 
-    render() {
-      const { title, body, creator } = this.state;
-      return(
-        <div className="new_post">
-          <NavLink to="/posts">
-            <img 
-              src={require('./img/return-button-png-34571.png')}
-              alt="back_buttom" 
-              className="back_buttom"
+  render() {
+    const { title, body, creator } = this.state;
+    return(
+      <div className="new_post">
+        <NavLink to="/posts">
+          <img 
+            src={require('./img/return-button-png-34571.png')}
+            alt="back_buttom" 
+            className="back_buttom"
+          />
+        </NavLink>
+        <div>
+          <form onSubmit={this.handleSubmit} className="postlist_input_title">
+            <Input 
+              className="postlist_input_title"
+              type='title' 
+              name='title' 
+              onChange={this.handleChange} 
+              onKeyPress={this.handlePress}
+              placeholder=" Add title"
+              value={title}
             />
-          </NavLink>
-          <div>
-            <form onSubmit={this.handleSubmit} className="postlist_input_title">
-              <Input 
-                className="postlist_input_title"
-                type='title' 
-                name='title' 
-                onChange={this.handleChange} 
-                placeholder=" Add title"
-                value={title}
-              />
-            </form>
-          </div>
-
-          <div>
-            <form>
-              <Input
-                className="postlist_textarea"
-                multiline={true}
-                type='body' 
-                name='body' 
-                onChange={this.handleChange} 
-                placeholder=" Add post"
-                value={body}     
-              />
-            </form>
-          </div>
-
-          <div>
-            <form>
-              <Input
-                className="postlist_input_author"
-                type='creator' 
-                name='creator' 
-                placeholder="Author"             
-                onChange={this.handleChange} 
-                value={creator}
-              />           
-            </form> 
-          </div>
-
-          <div>
-            <Button 
-              variant="text" 
-              color="default"
-              onClick={() => this.handleSubmit()}>
-              Add post
-            </Button>
-          </div>                  
+          </form>
         </div>
-        )
-    }
+
+        <div>
+          <form>
+            <Input
+              className="postlist_textarea"
+              multiline={true}
+              type='body' 
+              name='body' 
+              onChange={this.handleChange} 
+              onKeyPress={this.handlePress}
+              placeholder=" Add post"
+              value={body}     
+            />
+          </form>
+        </div>
+
+        <div>
+          <form>
+            <Input
+              className="postlist_input_author"
+              type='creator' 
+              name='creator' 
+              placeholder=" Add author"             
+              onChange={this.handleChange} 
+              onKeyPress={this.handlePress}
+              value={creator}
+            />           
+          </form> 
+        </div>
+
+        <div>
+          <Button 
+            disabled={ !title.length || !body.length || !creator.length }
+            variant="text" 
+            color="default"
+            onClick={() => this.handleSubmit()}>
+            Add post
+          </Button>
+        </div>                  
+      </div>
+    )
+  }
 }
 const getData = (state) => ({ 
   posts: posts(state)
