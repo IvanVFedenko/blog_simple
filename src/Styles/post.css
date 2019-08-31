@@ -1,0 +1,46 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  text-indent: 1.5em;
+  margin: 0 auto;
+  width: 75%;
+}
+
+.post_body {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  min-width: 450px;
+  box-sizing: border-box;
+}
+
+.post_comment {
+  display: block;
+  width: 85%;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 12px;
+  margin: 5px;
+}
+
+.comment_input {
+  width: 35%;
+  margin-top: 50px;
+  min-width: 200px;
+}
+
+.back_buttom {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.1s;
+}
+
+.back_buttom:hover {
+  transform: scale(1.2);
+}
+
+.comments_block {
+  max-height: 370px;
+  box-sizing: border-box;
+}

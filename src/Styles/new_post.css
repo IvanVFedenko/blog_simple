@@ -1,0 +1,27 @@
+.new_post {
+  width: 500px;
+}
+
+.postlist_input_title  {
+  width: 95%;
+  margin-top: 20px;
+}
+
+.postlist_textarea {
+  width: 90%;
+  margin-top: 70px;
+}
+
+.postlist_input_author {
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.back_buttom {
+  transition: transform 0.1s;
+}
+
+.back_buttom:hover {
+  transform: scale(1.2);
+}
