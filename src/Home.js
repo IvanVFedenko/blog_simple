@@ -1,7 +1,7 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const Home = () =>
+const Home = () => (
   <div className="home">
     <nav>
       <ul>
@@ -12,7 +12,8 @@ const Home = () =>
           </NavLink>
         </li>
       </ul>
-    </nav> 
+    </nav>
   </div>
+);
 
 export default Home;

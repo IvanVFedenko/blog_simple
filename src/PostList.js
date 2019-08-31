@@ -39,45 +39,45 @@ class PostList extends React.Component {
     const firstPosition = page * perPage;
     const lastPosition = page * perPage + perPage;
     return (
-      <div className="post_list">   
+      <div className="post_list">
         <h1>Post list</h1>
         <Button><NavLink to="/new_post" >Add the new post</NavLink></Button>
-          {posts.slice(firstPosition, lastPosition).map(post => 
+          {posts.slice(firstPosition, lastPosition).map(post =>
             <div  key={Math.random()} className="post_item">
-            <Link to={`/posts/${post.id}`}  className="post_item_link">  
+            <Link to={`/posts/${post.id}`}  className="post_item_link">
               <ul className={post.id ? '' : 'del_buttom_disable'}>
-                <li className="postlist_heading">Title: <b>{post.title}</b></li>    
-                <li className="postlist_heading">Author: <b>{post.creator}</b></li>               
-                <li className="postlist_heading">Date: {post.date}</li>                        
+                <li className="postlist_heading">Title: <b>{post.title}</b></li>
+                <li className="postlist_heading">Author: <b>{post.creator}</b></li>
+                <li className="postlist_heading">Date: {post.date}</li>
               </ul>
             </Link>
-              <button 
+              <button
                 onClick={() => {this.handleDelete(post.id)}}
-                className='destroy' 
+                className='destroy'
                 disabled={!post.id}
               >
               </button>
-            </div> 
-            )}           
+            </div>
+            )}
         {posts.length < 6 ? "" :
           <Pagination
             page={page}
             perPage={perPage}
             total={posts.length}
             handlePageChange={this.handlePageChange}
-          /> 
+          />
         }
       </div>
     )
   }
 }
 
-const getData = (state) => ({ 
+const getData = (state) => ({
   posts: posts(state),
   page: page(state),
   perPage: perPage(state),
 });
-const getMethod = (dispatch) => ({ 
+const getMethod = (dispatch) => ({
   getPostThunkCreator: () => dispatch(getPostThunkCreator()),
   setCurrentPage: (value) => dispatch(setCurrentPage(value)),
 });
