@@ -35,7 +35,7 @@ class NewPost extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value.replace(/[^ \wа-яА-ЯІіЇїЁё]/g, ''),
+      [event.target.name]: event.target.value.replace(/[^ {,.!?+}\wа-яА-ЯІіЇїЁё]/g, ''),
     });
   }
 
