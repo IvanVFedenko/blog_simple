@@ -129,7 +129,7 @@ class Post extends React.Component {
 }
 
 Post.propTypes = {
-  postId: PropTypes.number.isRequired,
+  postId: PropTypes.string.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPostThunkCreator: PropTypes.func.isRequired,

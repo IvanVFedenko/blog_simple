@@ -14,7 +14,8 @@ body {
 .home {
   text-align: center;
   margin-top: 45%;
-  font-size: 30px;
+  font-size: 220%;
+  line-height: 45px;
 }
 
 .load-button {
@@ -42,7 +43,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 20px; 
+  margin: 20px;
 }
 
 .todoitem {
