@@ -66,7 +66,7 @@ class NewPost extends React.Component {
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
       .then((response) => console.log('Success:', response))
-      //.then(() => this.props.getPostThunkCreator());
+      .then(() => this.props.getPostThunkCreator());
 
     this.setState({
       title: '',
