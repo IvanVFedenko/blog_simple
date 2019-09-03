@@ -34,8 +34,8 @@ class PostList extends React.Component {
       .catch((err) => { console.error(err); })
       .then(() => this.props.getPostThunkCreator())
       .then(() => {
-        if (posts.length % 5 === 0) { setCurrentPage(page - 1); }
-        if (posts.length <= 5) { setCurrentPage(0); }
+        if (Math.floor(posts.length - 1) % 5 === 0) { setCurrentPage(page - 1); }
+        if (posts.length - 1 <= 5) { setCurrentPage(0); }
       });
   }
 
@@ -54,18 +54,18 @@ class PostList extends React.Component {
                 <li className="postlist_heading">
                   Title:
                   <b>
-                    {post.title}
+                  &nbsp; {post.title}
                   </b>
                 </li>
                 <li className="postlist_heading">
                   Author:
                   <b>
-                    {post.creator}
+                  &nbsp; {post.creator}
                   </b>
                 </li>
                 <li className="postlist_heading">
                   Date:
-                  {post.date}
+                  &nbsp; {post.date}
                 </li>
               </ul>
             </Link>

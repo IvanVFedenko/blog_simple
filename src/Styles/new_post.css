@@ -18,10 +18,31 @@
   margin-bottom: 50px;
 }
 
-.back_buttom {
+.back_button {
   transition: transform 0.1s;
 }
 
-.back_buttom:hover {
+.back_button:hover {
   transform: scale(1.2);
+}
+
+.newpost__choice {
+  display: grid;
+  justify-items: center;
+  grid-gap: 50px;
+  margin: 100px, auto;
+}
+
+.newpost__add-button {
+  display: flex;
+  margin: 50px, auto;
+}
+
+.newpost__add-button:hover {
+  color: brown;
+}
+
+.newpost__back-button {
+  display: flex;
+  margin: auto;
 }

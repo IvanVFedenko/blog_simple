@@ -8,7 +8,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
@@ -27,6 +27,7 @@ class NewPost extends React.Component {
     title: '',
     body: '',
     creator: '',
+    success: false,
   }
 
   componentDidMount() {
@@ -40,6 +41,9 @@ class NewPost extends React.Component {
   }
 
   handleSubmit = () => {
+    this.setState ({
+      success: false,
+    })
     const { title, body, creator } = this.state;
     const url = 'https://simple-blog-api.crew.red/posts';
     const d = new Date();
@@ -62,78 +66,112 @@ class NewPost extends React.Component {
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
       .then((response) => console.log('Success:', response))
-      .then(() => this.props.getPostThunkCreator());
+      //.then(() => this.props.getPostThunkCreator());
 
     this.setState({
       title: '',
       body: '',
       creator: '',
+      success: true,
     });
+  }
+
+  handleSetStatus = () => {
+    this.setState({
+      success:false,
+    })
   }
 
   render() {
     const { title, body, creator } = this.state;
     return (
-      <div className="new_post">
-        <NavLink to="/posts">
-          <img
-            src={require('./img/return-button-png-34571.png')}
-            alt="back_buttom"
-            className="back_buttom"
-          />
-        </NavLink>
-        <div>
-          <form onSubmit={this.handleSubmit} className="postlist_input_title">
-            <Input
-              className="postlist_input_title"
-              type="title"
-              name="title"
-              onChange={this.handleChange}
-              onKeyPress={this.handlePress}
-              placeholder=" Add title"
-              value={title}
-            />
-          </form>
-        </div>
+      <div>
+        {this.state.success ?
+        <div className="newpost__choice">
 
-        <div>
-          <form>
-            <Input
-              className="postlist_textarea"
-              multiline={true}
-              type="body"
-              name="body"
-              onChange={this.handleChange}
-              onKeyPress={this.handlePress}
-              placeholder=" Add post"
-              value={body}
-            />
-          </form>
-        </div>
+          <div >
+            <h1>The post was created!</h1>
+          </div>
 
-        <div>
-          <form>
-            <Input
-              className="postlist_input_author"
-              type="creator"
-              name="creator"
-              placeholder=" Add author"
-              onChange={this.handleChange}
-              onKeyPress={this.handlePress}
-              value={creator}
-            />
-          </form>
-        </div>
+          <div className="newpost__back-button">
+            <Button className="newpost__back-button">
+              <Link to="/posts">
+                Back to the post list
+              </Link>
+            </Button>
+          </div>
 
-        <div>
-          <Button
-            disabled={!title.length || !body.length || !creator.length}
-            variant="text"
-            color="default"
-            onClick={() => this.handleSubmit()}>
-            Add post
-          </Button>
+          <div className="newpost__add-button">
+            <Button
+              onClick={() => this.handleSetStatus()}
+              className="newpost__add-button"
+            >
+              Create the new post
+            </Button>
+          </div>
         </div>
+        :
+        <div className="new_post">
+          <NavLink to="/posts">
+            <img
+              src={require('./img/return-button-png-34571.png')}
+              alt="back_button"
+              className="back_button"
+            />
+          </NavLink>
+          <div>
+            <form onSubmit={this.handleSubmit} className="postlist_input_title">
+              <Input
+                className="postlist_input_title"
+                type="title"
+                name="title"
+                onChange={this.handleChange}
+                onKeyPress={this.handlePress}
+                placeholder=" Add title"
+                value={title}
+              />
+            </form>
+          </div>
+
+          <div>
+            <form>
+              <Input
+                className="postlist_textarea"
+                multiline={true}
+                type="body"
+                name="body"
+                onChange={this.handleChange}
+                onKeyPress={this.handlePress}
+                placeholder=" Add post"
+                value={body}
+              />
+            </form>
+          </div>
+
+          <div>
+            <form>
+              <Input
+                className="postlist_input_author"
+                type="creator"
+                name="creator"
+                placeholder=" Add author"
+                onChange={this.handleChange}
+                onKeyPress={this.handlePress}
+                value={creator}
+              />
+            </form>
+          </div>
+
+          <div>
+            <Button
+              disabled={!title.length || !body.length || !creator.length}
+              variant="text"
+              color="default"
+              onClick={() => this.handleSubmit()}>
+              Add post
+            </Button>
+          </div>
+        </div>}
       </div>
     );
   }

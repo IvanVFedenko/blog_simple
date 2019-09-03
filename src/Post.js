@@ -75,8 +75,8 @@ class Post extends React.Component {
           <NavLink to="/posts">
             <img
               src={require('./img/return-button-png-34571.png')}
-              alt="back_buttom"
-              className="back_buttom"
+              alt="back_button"
+              className="back_button"
             />
           </NavLink>
         </div>
