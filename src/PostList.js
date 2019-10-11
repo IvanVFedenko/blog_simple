@@ -29,7 +29,7 @@ class PostList extends React.Component {
 
   handleDelete = (id) => {
     const { posts, page, setCurrentPage } = this.props;
-    fetch(API_URL + '/' + id, { method: 'DELETE' })
+    fetch(`${API_URL}/${id}`, { method: 'DELETE' })
       .then(() => { console.log('removed'); })
       .catch((err) => { console.error(err); })
       .then(() => this.props.getPostThunkCreator())
@@ -47,42 +47,47 @@ class PostList extends React.Component {
       <div className="post_list">
         <h1>Post list</h1>
         <Button><NavLink to="/new_post">Add the new post</NavLink></Button>
-        {posts.slice(firstPosition, lastPosition).map(post =>
+        {posts.slice(firstPosition, lastPosition).map((post) => (
           <div key={Math.random()} className="post_item">
             <Link to={`/posts/${post.id}`} className="post_item_link">
               <ul className={post.id ? '' : 'del_buttom_disable'}>
                 <li className="postlist_heading">
                   Title:
                   <b>
-                  &nbsp; {post.title}
+                    {post.title}
                   </b>
                 </li>
                 <li className="postlist_heading">
                   Author:
                   <b>
-                  &nbsp; {post.creator}
+                    {post.creator}
                   </b>
                 </li>
                 <li className="postlist_heading">
                   Date:
-                  &nbsp; {post.date}
+                  &nbsp;
+                  {' '}
+                  {post.date}
                 </li>
               </ul>
             </Link>
             <button
               type="button"
               onClick={() => { this.handleDelete(post.id); }}
-              className='destroy'
+              className="destroy"
               disabled={!post.id}
             />
-          </div>)}
+          </div>
+        ))}
         {posts.length < 6 ? ''
-          : <Pagination
+          : (
+            <Pagination
               page={page}
               perPage={perPage}
               total={posts.length}
               handlePageChange={this.handlePageChange}
-            />}
+            />
+          )}
       </div>
     );
   }

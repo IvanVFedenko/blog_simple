@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'https://simple-blog-api.crew.red/posts';
 
 export const getFromServer = async () => {
-  const post = await axios.get(API_URL);             // using axios
+  const post = await axios.get(API_URL); // using axios
   const posts = post.data;
 
   // const responsePosts = await fetch(API_URL);     //  using fetch

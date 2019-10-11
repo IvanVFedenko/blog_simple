@@ -8,6 +8,7 @@ const Home = () => (
         <li>
           <NavLink to="/posts">
             <h1>Welcome to the simple blog</h1>
+            <h5>Built with Blog API</h5>
             <h1>(click to enter)</h1>
           </NavLink>
         </li>

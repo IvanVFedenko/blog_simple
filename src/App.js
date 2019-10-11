@@ -14,9 +14,11 @@ const App = () => (
     <Route path="/new_post" component={NewPost} />
     <Route
       path="/posts/:postId"
-      render={({ match }) => <Post
-        postId={match.params.postId}
-      />}
+      render={({ match }) => (
+        <Post
+          postId={match.params.postId}
+        />
+      )}
     />
   </div>
 );

@@ -1,4 +1,4 @@
-/* eslint-disable react/state-in-constructor */
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -88,20 +88,21 @@ class Post extends React.Component {
           <b>
             {comments.length > 0 ? 'Comments:' : ''}
           </b>
-          {comments.slice(firstPosition, lastPosition).map((comment) =>
+          {comments.slice(firstPosition, lastPosition).map((comment) => (
             <div key={comment.id}>
               <p className="post_comment">
                 -
                 {comment.body}
               </p>
-            </div>)}
+            </div>
+          ))}
         </div>
 
         <form onSubmit={this.handleSubmit}>
           <Input
             type="body"
             name="body"
-            multiline={true}
+            multiline
             rows={1}
             maxLength="2"
             onChange={this.handleChange}
@@ -117,12 +118,14 @@ class Post extends React.Component {
           </Button>
         </form>
         {comments.length < 6 ? ''
-          : <Pagination
-            page={page}
-            perPage={perPage}
-            total={comments.length}
-            handlePageChange={this.handlePageChange}
-          />}
+          : (
+            <Pagination
+              page={page}
+              perPage={perPage}
+              total={comments.length}
+              handlePageChange={this.handlePageChange}
+            />
+          )}
       </div>
     );
   }
