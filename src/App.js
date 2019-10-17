@@ -2,10 +2,11 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import './Styles/App.css';
-import PostList from './PostList';
-import Post from './Post';
-import Home from './Home';
-import NewPost from './NewPost';
+
+import Home from './components/Home';
+import Post from './containers/Post';
+import NewPost from './containers/NewPost';
+import PostList from './containers/PostList';
 
 const App = () => (
   <div>
