@@ -1,10 +1,9 @@
-
 import React from 'react';
 
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './Styles/pagination.css';
+import '../Styles/pagination.css';
 
 const Pagination = (props) => {
   const {
@@ -23,7 +22,7 @@ const Pagination = (props) => {
     return btnsArr.map((num) => (
       <button
         type="button"
-        key={Math.round()}
+        key={num + 1}
         onClick={() => handlePageChange(num)}
         className={classnames({
           'pagination_button': true,
