@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import 'typeface-roboto';
@@ -86,4 +87,12 @@ const getData = (state) => ({
 const getMethod = (dispatch) => ({
   getPostThunkCreator: () => dispatch(getPostThunkCreator()),
 });
+
+NewPost.propTypes = {
+  body: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  creator: PropTypes.string.isRequired,
+  success: PropTypes.bool
+};
+
 export default connect(getData, getMethod)(NewPost);

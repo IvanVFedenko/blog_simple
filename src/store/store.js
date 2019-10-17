@@ -10,7 +10,7 @@ import {paginationReducer} from './reducers/paginationReducer'
 // selectors
 export const posts = ({ postList }) => postList.posts;
 export const comments = ({ commentList }) => commentList.comments;
-export const isLoaded = ({ postList }) => postList.isLoaded;
+export const isLoaded = ({ commentList }) => commentList.isLoaded;
 export const page = ({ pagination }) => pagination.page;
 export const perPage = ({ pagination }) => pagination.perPage;
 

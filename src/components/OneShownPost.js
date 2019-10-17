@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import 'typeface-roboto';
@@ -7,10 +8,19 @@ import Input from '@material-ui/core/Input';
 
 const OneShownPost = (props) => {
 
-    const { postId, posts, comments, body, page, perPage, handleSubmit, handleChange } = props;
-    const shownPost = posts.find((post) => post.id === +postId);
-    const firstPosition = page * perPage;
-    const lastPosition = page * perPage + perPage;
+  const {
+    postId,
+    posts,
+    comments,
+    body,
+    page,
+    perPage,
+    handleSubmit,
+    handleChange } = props;
+
+  const shownPost = posts.find((post) => post.id === +postId);
+  const firstPosition = page * perPage;
+  const lastPosition = page * perPage + perPage;
 
   return (
     <div>
@@ -62,6 +72,17 @@ const OneShownPost = (props) => {
       </form>
     </div>
   )
+};
+
+OneShownPost.propTypes = {
+  postId: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+  perPage: PropTypes.number.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default OneShownPost;

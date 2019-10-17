@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 
 import 'typeface-roboto';
@@ -14,7 +15,8 @@ const NewPostComponent = (props) => {
     handlePress,
     handleChange,
     handleSubmit,
-    handleSetStatus,  } = props;
+    handleSetStatus } = props;
+
   return (
     <div>
     {success
@@ -109,6 +111,17 @@ const NewPostComponent = (props) => {
       )}
   </div>
   )
+};
+
+NewPostComponent.propTypes = {
+  body: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  creator: PropTypes.string.isRequired,
+  success: PropTypes.bool,
+  handlePress: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSetStatus:PropTypes.func.isRequired
 };
 
 export default NewPostComponent;

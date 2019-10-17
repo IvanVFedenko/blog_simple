@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import 'typeface-roboto';
 import Button from '@material-ui/core/Button'
@@ -48,6 +49,13 @@ const ShownPosts = (props) => {
     ))}
   </div>
   )
+};
+
+ShownPosts.propTypes = {
+  page: PropTypes.number.isRequired,
+  perPage: PropTypes.number.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  andleDelete: PropTypes.func.isRequired,
 };
 
 export default ShownPosts;
